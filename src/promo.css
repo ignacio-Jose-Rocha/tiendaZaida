@@ -1,0 +1,179 @@
+/* ============ ETIQUETA 2x1 EN TARJETAS ============ */
+.card__media {
+  position: relative;
+  background: var(--rose);
+}
+
+.card__badge {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  background: #f0553a;
+  color: #fff;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.15rem;
+  line-height: 1.2;
+  box-shadow: 0 8px 16px -8px rgba(240, 85, 58, 0.9);
+  transform: rotate(-6deg);
+}
+
+.drawer__info .drawer__promo {
+  color: #d9402a;
+  font-weight: 600;
+}
+
+/* ============ POPUP DE VERANO ============ */
+.promo {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(10, 45, 55, 0.62);
+  animation: promo-fade 0.3s ease both;
+}
+
+.promo__card {
+  position: relative;
+  width: min(100%, 480px);
+  max-height: calc(100svh - 2rem);
+  overflow-y: auto;
+  text-align: center;
+  background: #fffbf2;
+  border-radius: 28px;
+  box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.7);
+  animation: promo-pop 0.55s cubic-bezier(0.2, 1.2, 0.4, 1) both;
+}
+
+.promo__art {
+  height: 190px;
+  overflow: hidden;
+  border-radius: 28px 28px 0 0;
+}
+
+.promo__art svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.promo__rays {
+  transform-origin: 390px 78px;
+  animation: promo-spin 40s linear infinite;
+}
+
+.promo__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 1;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--wine);
+  font-size: 1.05rem;
+  cursor: pointer;
+}
+
+.promo__close:hover {
+  background: #fff;
+}
+
+.promo__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1.3rem 1.6rem 1.6rem;
+}
+
+.promo__tag {
+  padding: 0.3rem 1rem;
+  border-radius: 999px;
+  background: var(--wine);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.promo__body h2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  font-size: 1.55rem;
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--wine);
+}
+
+.promo__big {
+  font-size: clamp(4.5rem, 18vw, 6.5rem);
+  font-style: italic;
+  font-weight: 700;
+  line-height: 0.95;
+  color: #f0553a;
+}
+
+.promo__detail {
+  max-width: 24rem;
+  color: var(--muted);
+}
+
+.promo__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.7rem;
+  margin-top: 0.3rem;
+}
+
+.btn--coral {
+  background: #f0553a;
+  color: #fff;
+  box-shadow: 0 10px 20px -10px rgba(240, 85, 58, 0.9);
+}
+
+.btn--teal {
+  background: #12a99b;
+  color: #fff;
+  box-shadow: 0 10px 20px -10px rgba(18, 169, 155, 0.9);
+}
+
+.btn--coral:hover,
+.btn--teal:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+}
+
+.promo__fine {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+@keyframes promo-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes promo-pop {
+  from { opacity: 0; transform: translateY(24px) scale(0.92); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes promo-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 480px) {
+  .promo__art {
+    height: 150px;
+  }
+}
