@@ -1,7 +1,30 @@
+import { useEffect, useState } from "react";
 import { BRAND, whatsappLink } from "../config.js";
 import { WhatsAppIcon, Sparkle } from "./Icons.jsx";
 
+const slides = [
+  {
+    src: "https://images.unsplash.com/photo-1516762689617-e1cffcef479d?auto=format&fit=crop&w=1000&q=85",
+    alt: "Selección de prendas de vestir",
+    className: "hero__photo--fashion",
+  },
+  {
+    src: "./fotos/cartel-zaida.jpg",
+    alt: "Cartel rosa de Zaida con los rubros de la mercería y juguetería",
+    className: "hero__photo--sign",
+  },
+];
+
 export default function Hero() {
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActiveSlide((current) => (current === 0 ? 1 : 0));
+    }, 4800);
+    return () => window.clearInterval(timer);
+  }, []);
+
   return (
     <section id="inicio" className="hero">
       <div className="hero__copy">
@@ -30,22 +53,24 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="hero__visual" aria-hidden="true">
+      <div className="hero__visual" aria-label="Fotos de la tienda Zaida">
         <div className="arch arch--back" />
         <div className="arch arch--mid" />
         <div className="arch arch--front">
-          <img
-            className="hero__photo"
-            src="https://images.unsplash.com/photo-1516762689617-e1cffcef479d?auto=format&fit=crop&w=800&q=80"
-            srcSet="https://images.unsplash.com/photo-1516762689617-e1cffcef479d?auto=format&fit=crop&w=480&q=80 480w, https://images.unsplash.com/photo-1516762689617-e1cffcef479d?auto=format&fit=crop&w=800&q=80 800w, https://images.unsplash.com/photo-1516762689617-e1cffcef479d?auto=format&fit=crop&w=1200&q=80 1200w"
-            sizes="(max-width: 860px) 78vw, 440px"
-            alt="Selección de telas y prendas en una composición de estilo editorial"
-            width="800"
-            height="1000"
-            fetchpriority="high"
-            decoding="async"
-            referrerPolicy="no-referrer"
-          />
+          <div className="hero__slides">
+            {slides.map((slide, index) => (
+              <img
+                key={slide.src}
+                className={`hero__photo ${slide.className} ${index === activeSlide ? "is-active" : ""}`}
+                src={slide.src}
+                alt={slide.alt}
+                width="900"
+                height="1200"
+                fetchPriority={index === 0 ? "high" : "auto"}
+                decoding="async"
+              />
+            ))}
+          </div>
         </div>
         <div className="hero__seal">
           <span>Pedí por WhatsApp</span>

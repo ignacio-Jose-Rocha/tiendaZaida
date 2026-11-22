@@ -32,7 +32,18 @@ export default function CartDrawer() {
         aria-hidden={!open}
       >
         <header className="drawer__head">
-          <h2>Tu pedido</h2>
+          <div className="drawer__head-copy">
+            <h2>Tu pedido</h2>
+            <button
+              className="drawer__back"
+              onClick={() => {
+                setOpen(false);
+                document.getElementById("merceria")?.scrollIntoView({ behavior: "smooth", block: "start" });
+              }}
+            >
+              ← Volver a los productos
+            </button>
+          </div>
           <button ref={closeRef} className="drawer__close" onClick={() => setOpen(false)} aria-label="Cerrar carrito">
             ✕
           </button>
@@ -56,10 +67,14 @@ export default function CartDrawer() {
                   </div>
                   <div className="drawer__info">
                     <strong>{product.name}</strong>
-                    <span>{formatPrice(product.price)} c/u</span>
+                    <span>{formatPrice(product.price)} {product.unitLabel || "c/u"}</span>
                     {product.promo && (
                       <span className="drawer__promo">
-                        {qty >= 2 ? `${product.promo} aplicado` : "Sumá 2 y pagás 1"}
+                        {product.promo === "6+1"
+                          ? qty >= 7
+                            ? `${Math.floor(qty / 7)} docena(s) gratis`
+                            : `Sumá ${7 - qty} docena(s) más y la 7.ª es gratis`
+                          : qty >= 2 ? "2x1 aplicado" : "Sumá 2 y pagás 1"}
                       </span>
                     )}
                     <Stepper

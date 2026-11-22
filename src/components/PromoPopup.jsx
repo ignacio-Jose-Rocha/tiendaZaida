@@ -112,11 +112,8 @@ export default function PromoPopup() {
           </h2>
           <p className="promo__detail">{PROMO.detail}</p>
           <div className="promo__actions">
-            <a className="btn btn--coral" href="#lenceria" onClick={dismiss}>
-              Ver lencería
-            </a>
-            <a className="btn btn--teal" href="#hombre" onClick={dismiss}>
-              Ver medias
+            <a className="btn btn--coral" href="#hombre" onClick={dismiss}>
+              Ver medias y promoción
             </a>
           </div>
           <button className="link" onClick={dismiss}>

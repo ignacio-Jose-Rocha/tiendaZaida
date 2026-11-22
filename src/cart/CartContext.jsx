@@ -49,7 +49,11 @@ function reducer(state, action) {
 }
 
 // Con promo 2x1 se paga la mitad de las unidades, redondeando hacia arriba (3 unidades = 2 pagas).
-const paidUnits = (product, qty) => (product.promo === "2x1" ? Math.ceil(qty / 2) : qty);
+const paidUnits = (product, qty) => {
+  if (product.promo === "2x1") return Math.ceil(qty / 2);
+  if (product.promo === "6+1") return qty - Math.floor(qty / 7);
+  return qty;
+};
 
 export function CartProvider({ children }) {
   // Arranca vacío para que coincida con el HTML prerenderizado; el carrito guardado se carga al montar.
@@ -84,8 +88,11 @@ export function CartProvider({ children }) {
       `Hola ${BRAND}! Quiero hacer este pedido:`,
       "",
       ...lines.map(
-        ({ product, qty, subtotal }) =>
-          `• ${qty} x ${product.name} — ${formatPrice(subtotal)}${product.promo ? ` (${product.promo})` : ""}`
+        ({ product, qty, subtotal }) => {
+          const free = product.promo === "6+1" ? Math.floor(qty / 7) : 0;
+          const promoText = free ? ` (${free} docena(s) bonificada(s))` : product.promo === "2x1" ? " (2x1 aplicado)" : "";
+          return `• ${qty} x ${product.name} — ${formatPrice(subtotal)}${promoText}`;
+        }
       ),
       "",
       `Total: ${formatPrice(total)}`,

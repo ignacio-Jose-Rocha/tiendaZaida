@@ -137,7 +137,7 @@
 .overlay {
   position: fixed;
   inset: 0;
-  z-index: 60;
+  z-index: 200;
   background: rgba(47, 10, 31, 0.55);
   opacity: 0;
   visibility: hidden;
@@ -154,8 +154,13 @@
   top: 0;
   right: 0;
   bottom: 0;
-  z-index: 70;
+  z-index: 210;
   width: min(100%, 430px);
+  height: 100vh;
+  height: 100dvh;
+  max-height: 100dvh;
+  overflow: hidden;
+  overscroll-behavior: contain;
   display: flex;
   flex-direction: column;
   background: var(--pearl);
@@ -177,6 +182,31 @@
   justify-content: space-between;
   padding: 1.1rem 1.4rem;
   border-bottom: 1px solid rgba(74, 18, 48, 0.12);
+  flex-shrink: 0;
+}
+
+.drawer__head-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  align-items: flex-start;
+}
+
+.drawer__back {
+  border: 0;
+  padding: 0.35rem 0;
+  background: transparent;
+  color: var(--wine);
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-decoration: underline;
+  cursor: pointer;
+  min-height: 40px;
+}
+
+.drawer__back:hover {
+  color: var(--wine-deep);
 }
 
 .drawer__head h2 {
@@ -222,11 +252,16 @@
 }
 
 .drawer__list {
-  flex: 1;
+  flex: 1 1 auto;
+  min-height: 0;
   margin: 0;
   padding: 0;
   list-style: none;
   overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  min-height: 0;
 }
 
 .drawer__list li {
@@ -288,6 +323,7 @@
 .drawer__foot {
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
   align-items: center;
   gap: 0.8rem;
   padding: 1.2rem 1.4rem 1.4rem;
@@ -306,4 +342,53 @@
   font-family: var(--font-display);
   font-size: 1.9rem;
   color: var(--wine);
+}
+
+@media (max-width: 600px) {
+  .drawer {
+    width: 100%;
+  }
+
+  .drawer__list li {
+    grid-template-columns: 58px minmax(0, 1fr) auto;
+    gap: 0.65rem;
+    padding: 0.85rem 1rem;
+  }
+
+  .drawer__thumb {
+    width: 58px;
+    height: 70px;
+  }
+
+  .drawer__foot {
+    padding: 0.85rem 1rem calc(1rem + env(safe-area-inset-bottom));
+    gap: 0.65rem;
+  }
+
+  .drawer__head {
+    padding: 0.85rem 1rem;
+  }
+}
+
+.drawer__list li {
+  min-width: 0;
+}
+
+.drawer__info strong {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 380px) {
+  .drawer__line {
+    font-size: 0.9rem;
+  }
+
+  .drawer__foot .btn--wa-big {
+    font-size: 0.95rem;
+    padding: 0.9rem 0.7rem;
+  }
+
+  .drawer__back {
+    font-size: 0.88rem;
+  }
 }
