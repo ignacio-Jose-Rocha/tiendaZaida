@@ -22,7 +22,10 @@ export default function ProductImage({ product, label }) {
     return <ProductArt art={product.art} hue={product.hue} label={label} />;
   }
 
-  const src = product.img || `${import.meta.env.BASE_URL}fotos/${product.id}.jpg`;
+  const rawSrc = product.img || `./fotos/${product.id}.jpg`;
+  const src = rawSrc.startsWith("./fotos/")
+    ? `${import.meta.env.BASE_URL}fotos/${rawSrc.slice("./fotos/".length)}`
+    : rawSrc;
   const srcSet = isUnsplash(src)
     ? [400, 600, 900].map((w) => `${sized(src, w)} ${w}w`).join(", ")
     : undefined;

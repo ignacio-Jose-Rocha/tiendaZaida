@@ -597,9 +597,10 @@ img {
 }
 
 .card__media {
-  aspect-ratio: 4 / 4.6;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
   border-radius: 999px 999px 14px 14px;
+  background: #fff8fa;
 }
 
 .card__media img,
@@ -864,7 +865,7 @@ p,
 .btn { font-size: 1.02rem; font-weight: 800; }
 .card__body h3 { font-size: 1.35rem; line-height: 1.25; }
 .card__body p { font-size: 1.02rem; line-height: 1.55; }
-.card__media img { object-fit: cover; object-position: center; }
+.card__media img { object-fit: contain; object-position: center; padding: 0.35rem; }
 
 /* ============ ACCESIBILIDAD ============ */
 .skip-link {

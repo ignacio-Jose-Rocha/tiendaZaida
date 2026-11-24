@@ -4,7 +4,7 @@ import { WhatsAppIcon, Sparkle } from "./Icons.jsx";
 
 const slides = [
   {
-    src: "https://images.unsplash.com/photo-1516762689617-e1cffcef479d?auto=format&fit=crop&w=1000&q=85",
+    src: "./fotos/ropa-local.jpg",
     alt: "Selección de prendas de vestir",
     className: "hero__photo--fashion",
   },
