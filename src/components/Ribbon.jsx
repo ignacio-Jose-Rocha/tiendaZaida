@@ -1,9 +1,8 @@
 import { Sparkle } from "./Icons.jsx";
 
 const items = [
-  "Promo de verano 2x1 en medias y lencería",
+  "Promo de verano 2x1 en medias",
   "Armá tu pedido en el carrito",
-  "Envíos a todo el país",
   "Retiro en el local",
   "Atención por WhatsApp",
 ];
